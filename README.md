@@ -1,3 +1,4 @@
+
 # Docker image with gcloud-kubectl-helm
 
 This docker image is designed to bootstrap the configuration of 3 CLI tools gcloud, kubectl and helm which are essential for the management of a Kubernetes cluster on GKE (Google Container Engine).
@@ -27,3 +28,6 @@ Another sporadic usecase is to have available all commands at once on a CoreOS s
 ## Copyright
 
 Please push back to the repo any improvements or added functionality.
+
+# gcloud-kubectl-helm
+
