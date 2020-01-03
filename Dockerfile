@@ -1,8 +1,7 @@
-FROM mhart/alpine-node:latest
+FROM alpine:edge
 
 ARG CLOUD_SDK_VERSION=229.0.0
 ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
-
 
 ARG HELM_VERSION=2.12.0
 ENV HELM_VERSION=$HELM_VERSION
@@ -12,6 +11,7 @@ ENV HELM_TAR_FILE="helm-v${HELM_VERSION}-linux-amd64.tar.gz"
 
 
 ENV PATH /google-cloud-sdk/bin:$PATH
+RUN apk upgrade --update 
 RUN apk --no-cache add \
         curl \
         python \
@@ -27,9 +27,12 @@ RUN apk --no-cache add \
         openssl \
         openssh-client \
         git \
+        nodejs \
+        npm \
+        yarn \
         docker \
-        jq \
         mongodb-tools \
+        jq \
         gnupg \
     && curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
     tar xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
@@ -58,3 +61,4 @@ VOLUME ["/root/.config"]
 RUN mkdir -p ~/.ssh && chmod 700 ~/.ssh
 
 CMD ["/bin/bash"]
+
